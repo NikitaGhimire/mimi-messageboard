@@ -17,8 +17,18 @@ const messages = [
 ];
 
 //set up the index route
-router.get("/", (req, res) => {
-  res.render("index", { title: "Mini messageboard", messages: messages });
+router.get("/", async (req, res) => {
+  const pool = req.pool;
+
+  try {
+    const { rows: messages } = await pool.query(
+      "SELECT * FROM messages ORDER BY added DESC"
+    );
+    res.render("index", { title: "Mini Messageboard", messages });
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
 });
 
 //new message form route: GET
@@ -27,15 +37,22 @@ router.get("/new", (req, res) => {
 });
 
 //new message form submission rute: POST
-router.post("/new", (req, res) => {
+router.post("/new", async (req, res) => {
+  const pool = req.pool;
   const messageText = req.body.messageText;
   const messageUser = req.body.messageUser;
 
   //add message to array
-  messages.push({ text: messageText, user: messageUser, added: new Date() });
-
-  //redirect to the index page
-  res.redirect("/");
+  try {
+    await pool.query(
+      'INSERT INTO messages ("text", "user", "added") VALUES ($1, $2, $3)',
+      [messageText, messageUser, new Date()]
+    );
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
 });
 
 module.exports = router;
