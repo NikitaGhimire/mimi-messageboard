@@ -13,13 +13,13 @@ h1 {
     color: #333;
     text-align: center;
     padding: 20px;
-    background-color: #007BFF;
+    background-color: #ff8c00;
     color: white;
     margin: 0;
 }
 
-/* Form styling */
-form {
+/* Unified Form Styling */
+form, .form-container {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -28,7 +28,8 @@ form {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-form div {
+/* Form elements */
+form div, .form-group {
     margin-bottom: 15px;
 }
 
@@ -53,6 +54,10 @@ button {
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -83,6 +88,18 @@ a {
     color: #007BFF;
 }
 
-a:hover {
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.container a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1rem;
+}
+
+.container a:hover {
     text-decoration: underline;
 }
