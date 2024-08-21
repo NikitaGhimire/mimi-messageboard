@@ -1,105 +1,98 @@
 /* styles.css */
 
-/* General body styling */
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Header styling */
+/* Heading Styles */
 h1 {
-    color: #333;
     text-align: center;
+    color: #333;
+    margin: 20px 0;
+}
+
+/* Container Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Card Styles */
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    background-color: #ff8c00;
-    color: white;
+    margin: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Link Styles */
+a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Additional Styles */
+ul {
+    list-style-type: none;
+    padding: 0;
     margin: 0;
 }
 
-/* Unified Form Styling */
-form, .form-container {
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+strong {
+    color: #333;
+}
+
+.form-container {
+    width: 80%;
     max-width: 600px;
-    margin: 20px auto;
+    margin-top: 20px;
     padding: 20px;
-    background: white;
+    background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Form elements */
-form div, .form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="text"] {
+input[type="text"], 
+textarea {
     width: 100%;
     padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 button {
-    background-color: #007BFF;
-    color: white;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    display: block;
-    width: 100%;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
-}
-
-/* List styling */
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 20px;
-}
-
-li {
-    padding: 10px;
-    background: white;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-li strong {
-    color: #333;
-}
-
-a {
-    text-decoration: none;
-    color: #007BFF;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.container a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 1rem;
-}
-
-.container a:hover {
-    text-decoration: underline;
 }
