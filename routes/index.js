@@ -35,7 +35,7 @@ router.post("/new", async (req, res) => {
       'INSERT INTO messages ("text", "user", "added") VALUES ($1, $2, $3)',
       [messageText, messageUser, new Date()]
     );
-    res.redirect("/");
+    res.redirect("/message");
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
