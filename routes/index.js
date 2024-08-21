@@ -1,20 +1,7 @@
 //initialise the router
 const express = require("express");
 const router = express.Router();
-
-//set up sample message
-const messages = [
-  {
-    text: "Hi there",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello world",
-    user: "Charles",
-    added: new Date(),
-  },
-];
+const pool = require("../db/pool");
 
 //set up the index route
 router.get("/", async (req, res) => {
@@ -24,7 +11,7 @@ router.get("/", async (req, res) => {
     const { rows: messages } = await pool.query(
       "SELECT * FROM messages ORDER BY added DESC"
     );
-    res.render("index", { title: "Mini Messageboard", messages });
+    res.render("index", { title: "All messages", messages });
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
@@ -52,6 +39,22 @@ router.post("/new", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
+  }
+});
+
+//delete
+router.post("/:id/delete", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query("DELETE FROM messages WHERE id=$1", [id]);
+    if (result.rowCount === 0) {
+      return res.status(404).send("Message not found");
+    }
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    res.send("Error: " + err);
   }
 });
 
