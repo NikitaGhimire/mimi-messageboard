@@ -2,8 +2,9 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const { Pool } = require("pg");
-const indexRouter = require("./routes/index");
+const pool = require("./db/pool");
+const homeRouter = require("./routes/home");
+const router = require("./routes/index");
 
 //initialising express app
 const app = express();
@@ -18,11 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 //serve static files from public directory
 app.use(express.static(path.join(__dirname, "public")));
 
-//create connection pool
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
 //make the pool available to routes
 app.use((req, res, next) => {
   req.pool = pool;
@@ -30,7 +26,8 @@ app.use((req, res, next) => {
 });
 
 //define routes
-app.use("/", indexRouter);
+app.use("/", homeRouter);
+app.use("/message", router);
 
 //start the server
 const PORT = process.env.PORT || 3001;
