@@ -51,7 +51,7 @@ router.post("/:id/delete", async (req, res) => {
     if (result.rowCount === 0) {
       return res.status(404).send("Message not found");
     }
-    res.redirect("/");
+    res.redirect("/message");
   } catch (err) {
     console.error(err);
     res.send("Error: " + err);
